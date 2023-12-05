@@ -1,0 +1,26 @@
+[
+{
+  "model": "home.productcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Weight_Loss",
+    "description": ""
+  }
+},
+{
+  "model": "home.productcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Weight_Balance",
+    "description": ""
+  }
+},
+{
+  "model": "home.productcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Weight_Gain",
+    "description": ""
+  }
+}
+]

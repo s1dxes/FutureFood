@@ -15,14 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from home.views import index, catalog, loss, balance, gain
+from django.urls import path, include
+from home.views import index, catalog
+                        # loss, balance, gain
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', index, name='index'),
-    path('catalog/', catalog, name='catalog'),
-    path('loss/', loss, name="weight_loss"),
-    path('balance/', balance, name="weight_balance"),
-    path('gain/', gain, name="weight_gain")
+    path('catalog/', include('home.urls', namespace='catalog')),
+    path('users/', include('users.urls', namespace='users')),
+    # path('gain/', gain, name="weight_gain"),
 ]
+
+if settings.DEBUG == True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
