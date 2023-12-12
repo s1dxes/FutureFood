@@ -17,17 +17,22 @@ class UserRegistrationForm(UserCreationForm):
         'class': 'form-control py-4', 'placeholder': 'Enter name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Enter lastname'}))
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'custom-file-input'}), required=False)
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Enter username'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Enter E-Mail'}))
+    height = forms.CharField(widget=forms.NumberInput(attrs={
+        'class': 'form-control py-4', 'placeholder': 'Enter height (in centimeters)'}))
+    weight = forms.CharField(widget=forms.NumberInput(attrs={
+        'class': 'form-control py-4', 'placeholder': 'Enter weight (in kilograms)'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Enter password'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Confirm your password'}))
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'image', 'username', 'email', 'height', 'weight', 'password1', 'password2')
 
 
 class UserProfileForm(UserChangeForm):
@@ -35,13 +40,22 @@ class UserProfileForm(UserChangeForm):
         'class': 'form-control py-4'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4'}))
-    image = forms.ImageField(widget=forms.FileInput(attrs={
-        'class': 'custom-file-input'}))
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'custom-file-input'}), required=False)
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4', 'readonly': True}))
     email = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4', 'readonly': True}))
+    height = forms.FloatField(widget=forms.NumberInput(attrs={
+        'class': 'form-control py-4'}))
+    weight = forms.FloatField(widget=forms.NumberInput(attrs={
+        'class': 'form-control py-4'}))
+    bmi = forms.FloatField(widget=forms.NumberInput(attrs={
+        'class': 'form-control py-4', 'readonly': True}))
+    bmi_status = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control py-4', 'readonly': True}), required=False)
+    bmi_history = forms.JSONField(widget=forms.TextInput(attrs={
+        'class': 'form-control py-4', 'readonly': True}), required=False)
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'image', 'username', 'email')
+        fields = ('first_name', 'last_name', 'image', 'username', 'email', 'height', 'weight', 'bmi', 'bmi_status', 'bmi_history')

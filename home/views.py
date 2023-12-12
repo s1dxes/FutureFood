@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 
-from home.models import Product,ProductCategory
+from home.models import Product, ProductCategory
 
 def index(request):
     context = {
@@ -16,7 +16,6 @@ def catalog(request):
         'categories' : ProductCategory.objects.all(),
     }
     return render(request, 'catalog_page/catalog.html', context)
-
 
 
 # def loss(request):
