@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DOMAIN_NAME = 'http://127.0.0.1:8000'
+
 
 # Application definition
 
@@ -38,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'home',
     'users',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +140,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 DEFAULT_CHARSET = 'utf-8'
+
+LOGIN_URL = '/users/login/'
+LOGOUT_REDIRECT_URL = '/home/'
+
+#Stripe
+
+STRIPE_PUBLIC_KEY = 'pk_test_51OR8pdExtQ2inBIKFjAS2BJbphzCqSy2CEkuFYpgQM0M42OT7jgwWF92OHQukPUEQxlvA1T9IzQOAKCPsCDaeZhV00ZyZwgAzZ'
+STRIPE_SECRET_KEY = 'sk_test_51OR8pdExtQ2inBIKbMHzvf7LgaaO0IFAYQTgJlwRvYrdICvVZy7kb19JZCz24mqNS1mJoubSLIpnp2k51ZbrnQFu00k78g9Bdr'

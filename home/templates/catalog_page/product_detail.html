@@ -1,0 +1,64 @@
+{%extends 'base.html' %}
+{% load static%}
+
+
+{% block css %}
+    <link href="{%static 'vendor/css/products.css'%}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+
+<div style="display: flex;flex-direction: column;align-items: center;width: 100%;">
+    <div class="col-lg-5" style="position: absolute;border-radius: 10px;  top:10%;right: 10px; width: 25%;background-color:#343a409c ">
+         {% include 'baskets_page/baskets.html' %}
+    </div>
+    <h1>{{ product.name }}</h1>
+    <h5>Type: {{ product.category }}</h5>
+    <img style="width: 400px; height: 400px" src="{{ product.image.url }}">
+    <h6>Price: {{ product.price }} KGS.</h6>
+    <h4>ration composition:</h4>
+    <div style="display: flex; justify-content: space-around; flex-wrap: nowrap">
+        <p class="card-text" style="margin: 0;font-weight: bold;margin-bottom: 5px ">
+            {{ product.calories }}Calories:
+        </p>
+    </div>
+    <div style="margin-bottom: 15px;height: 22px;width: 25vw;display: flex; justify-content: space-around; flex-wrap: nowrap">
+        <p class="card-text" style="margin: 0">
+            {{ product.fats }}Fat
+        </p>
+        /
+        <p class="card-text" style="margin: 0">
+            {{ product.proteins }}Protein
+        </p>
+        /
+        <p class="card-text" style="margin: 0">
+            {{ product.carbohydrates }}Carbs.
+        </p>
+    </div>
+    <p style="margin-bottom: 15px;text-align: center; width: 45%">{{ product.description }}</p>
+    {% if allergy %}
+        <p style="margin-bottom: 0px">Possible Allergens :
+        <div style="display: flex">
+            <ul style="display: flex;flex-wrap:wrap;width: 204px;flex-direction: column">
+                {% for allergy in product.allergens.all %}
+                    <li>{{ allergy.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        </p>
+    {% else %}
+        <p style="margin-bottom: 0px">Possible Allergens : None </p>
+    {% endif %}
+        <div class="card-footer text-center" >
+            <a class="btn btn-outline-success" href="{% url 'catalog:basket_add' product.id %}">
+               Add to basket
+            </a>
+        </div>
+</div>
+{% endblock %}
+
+
+
+
+    <!-- Добавьте другую информацию о продукте по мере необходимости -->

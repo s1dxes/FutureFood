@@ -6,28 +6,24 @@
 {% endblock %}
 
 {% block  content %}
+
     <section>
         <!--    <div class="alert alert-light text-center" role="alert">-->
         <!--        Информационное сообщение-->
         <!--    </div>-->
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="mt-5">FutureFood</h1>
-                    <p>
-                        Откройте двери в будущее вместе с FutureFood
-                        - доставляем удовольствие каждый день
-    <!--                    {% if is_promotion %}-->
-                        Аутлет: до -70% Собственный бренд. -20% новым покупателям.
-    <!--                    {% else %}-->
-    <!--                    Аутлет: до -120% Собственный бренд. -2120% новым покупателям.-->
-    <!--                    {% endif %}-->
+            <div class="row" style="text-align: center;justify-content: center;">
+                <div class="col-lg-6" style="display: flex;flex-wrap: wrap; justify-content: center; background-color: #49596b; padding-bottom: 25px; border-radius: 20px;">
+                    <h1 class="mt-5" style="width: 100%;color: whitesmoke">FutureFood</h1>
+                    <p style="text-align: center;color: whitesmoke;width: 70%">
+                        Open the doors to the future with FutureFood
+                        - Delivering pleasure every day
                     </p>
-                    <button id="start-purchase-btn" type="button" class="btn btn-lg">
-                        <a id="start-purchase-link" href="{%url 'catalog:index'%}">
-                            Начать покупки
-                        </a>
-                    </button>
+                    <a style="width: 100%;height: 30%" id="start-purchase-link" href="{%url 'catalog:index'%}">
+                        <button style="width: 50%" id="start-purchase-btn" type="button" class="btn btn-lg">
+                                Start
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

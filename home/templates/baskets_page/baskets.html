@@ -1,0 +1,70 @@
+{% load humanize %}
+{% if baskets %}
+    <h4 class="mt-3 mb-3 d-flex justify-content-between align-items-center mb-3">
+        Basket <span class="badge badge-secondary badge-pill"> quantity of sets : {{baskets.counter}}</span>
+    </h4>
+    <div style="max-height: 50vh; overflow-y: scroll; overflow-x: hidden">
+    {% for basket in baskets %}
+        <div class="card mb-3">
+            <div class="card-body" style="align-items: center;display: flex; flex-wrap: wrap; flex-direction: column;">
+                <img style="width: 100px; height: 60px; align-self: center; margin-bottom: 10px" src="{{ basket.product.image.url }}">
+                <h5 style="margin: 0px;text-align: center">{{ basket.product.name }}</h5>
+                <p style="margin: 0px"> price: {{ basket.product.price }}</p>
+
+                {% if basket.product.category %}
+                <a href="{%url 'catalog:product_detail' basket.product.id %}"  style="text-align: center;font-weight: bold;color: #000000e0">
+                <p style="margin: 0px">see more</p>
+                </a>
+                {%endif%}
+
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-light">
+                    <div class="row text-center">
+                        <div class="col-lg-4">
+                            <input name="basketID" type="number" class="form-control"
+                                   value="{{ basket.quantity }}" min="0">
+                            <div style="display: flex; justify-content: space-around">
+                                <a style="color: red;font-size: 25px" href="{% url 'catalog:basket_remove_item' basket.id %}">
+                                    -
+                                </a>
+                                <a style="color: green;font-size: 25px" href="{% url 'catalog:basket_add' basket.product.id %}">
+                                    +
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">{{ basket.sum|intcomma }} KGZ</div>
+                        <div class="col-lg-4" style="">
+                            <a href="{% url 'catalog:basket_remove' basket.id %}">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="card mb-3">
+<!--        <h4 class="float-right" style="text-align: center">количество товаров:{{baskets.total_quantity}}.</h4>-->
+    <div class="card-footer" style="padding-top: 4px;display: flex; flex-direction: column; align-items: flex-start">
+        <h4 class="" style="font-size: 16px;text-align: center;width: 100%">quantity of goods: {{baskets.total_quantity}}.</h4>
+        <h5 class="float-right" style="text-align:end;width: 100%">Total:  {{baskets.total_sum|intcomma}} KGZ.</h5>
+    </div>
+
+</div>
+<div>
+    <a class="btn btn-success btn-lg float-right" href="{% url 'orders:order_create' %}">
+        Place an order
+    </a>
+    <a class="btn  float-left" style="color: red;background-color: #ffffff4d;font-size: 17px;text-align: center;margin: 0" href="{% url 'catalog:basket_remove_all' %}">
+        Delete all
+    </a>
+</div>
+
+{% else %}
+<h4 class="mt-3 mb-3 text-center" style="background-color: whitesmoke; border-radius: 20px">
+    Basket is empty
+</h4>
+{% endif %}

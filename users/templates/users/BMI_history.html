@@ -1,0 +1,23 @@
+<title>FutureFood BMI-History</title>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'vendor/css/profile.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+ <h1>BMI History for {{ user.username }}</h1>
+    {% csrf_token %}
+    <ul style="display:flex;flex-wrap: wrap">
+        {% for entry in user.bmi_history %}
+            <li style="width: 50% ; margin: 20px 0 ; font-size: 18px">
+                {{ forloop.counter }} <br>
+                Date of change : {{ entry.date }}<br>
+                Height: {{ entry.height }}см {{ entry.height_difference }}<br>
+                Weight: {{ entry.weight }}кг {{ entry.weight_difference }}<br>
+                BMI: {{ entry.bmi }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

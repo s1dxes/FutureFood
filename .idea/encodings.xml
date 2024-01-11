@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/dump.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/users/models.py" charset="windows-1251" />
     <file url="PROJECT" charset="windows-1251" />
   </component>
 </project>

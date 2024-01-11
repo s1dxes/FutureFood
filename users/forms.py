@@ -1,4 +1,5 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from users.models import User
 
@@ -17,7 +18,6 @@ class UserRegistrationForm(UserCreationForm):
         'class': 'form-control py-4', 'placeholder': 'Enter name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Enter lastname'}))
-    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'custom-file-input'}), required=False)
     username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4', 'placeholder': 'Enter username'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={
@@ -32,7 +32,7 @@ class UserRegistrationForm(UserCreationForm):
         'class': 'form-control py-4', 'placeholder': 'Confirm your password'}))
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'image', 'username', 'email', 'height', 'weight', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'username', 'email', 'height', 'weight', 'password1', 'password2')
 
 
 class UserProfileForm(UserChangeForm):
@@ -46,9 +46,9 @@ class UserProfileForm(UserChangeForm):
     email = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control py-4', 'readonly': True}))
     height = forms.FloatField(widget=forms.NumberInput(attrs={
-        'class': 'form-control py-4'}))
+        'class': 'form-control py-4'}), min_value=0)
     weight = forms.FloatField(widget=forms.NumberInput(attrs={
-        'class': 'form-control py-4'}))
+        'class': 'form-control py-4'}), min_value=0)
     bmi = forms.FloatField(widget=forms.NumberInput(attrs={
         'class': 'form-control py-4', 'readonly': True}))
     bmi_status = forms.CharField(widget=forms.TextInput(attrs={

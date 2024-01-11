@@ -1,0 +1,27 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+   <main>
+       <div class="container">
+           <div class="row justify-content-center">
+               <div class="col-lg-5">
+                   <div class="card shadow-lg border-0 rounded-lg mt-5">
+                       <div class="card-header">
+                           <h3 class="text-center font-weight-light my-4">Thank you for ordering!</h3>
+                       </div>
+                       <div class="card-body text-center">
+                           <h5>
+                               Your order has been successfully placed.
+                           </h5>
+                       </div>
+                       <div class="card-body text-center">
+                            <a class="navbar-brand" href="{% url 'index' %}">
+                               Back to home page
+                           </a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </main>
+{% endblock %}
